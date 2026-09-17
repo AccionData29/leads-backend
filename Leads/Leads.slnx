@@ -1,6 +1,0 @@
-<Solution>
-  <Project Path="Leads.Application/Leads.Application.csproj" />
-  <Project Path="src/Leads.Domain/Leads.Domain.csproj" />
-  <Project Path="src/Leads.Infrastructure/Leads.Infrastructure.csproj" />
-  <Project Path="tests/Leads.UnitTests/Leads.UnitTests.csproj" />
-</Solution>
