@@ -1,3 +1,38 @@
-using Leads.Application.Ports; using Leads.Infrastructure.Persistence; using Leads.Infrastructure.Repositories; using Microsoft.EntityFrameworkCore; using Microsoft.Extensions.Configuration; using Microsoft.Extensions.DependencyInjection;
+using Leads.Application.Ports;
+using Leads.Infrastructure.Persistence;
+using Leads.Infrastructure.Repositories;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+
 namespace Leads.Infrastructure;
-public static class DependencyInjection{public static IServiceCollection AddInfrastructure(this IServiceCollection s,IConfiguration c){var cs=c.GetConnectionString("Default")??c["DATABASE_URL"]??throw new InvalidOperationException("Database connection string not configured.");s.AddDbContext<LeadsDbContext>(o=>o.UseNpgsql(cs));s.AddScoped<ILeadRepository,LeadRepository>();s.AddScoped<IAdvisorRepository,AdvisorRepository>();s.AddScoped<IMotorcycleRepository,MotorcycleRepository>();s.AddScoped<IPipelineRunRepository,PipelineRunRepository>();var pipelineUrl=c["Pipeline:BaseUrl"]??"http://localhost:8001";s.AddHttpClient<IPipelineService,PipelineHttpClient>(client=>{client.BaseAddress=new Uri(pipelineUrl);client.Timeout=TimeSpan.FromSeconds(30);});return s;}}
+
+public static class DependencyInjection
+{
+    public static IServiceCollection AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
+    {
+        var connectionString = configuration.GetConnectionString("Default")
+            ?? configuration["DATABASE_URL"]
+            ?? "Host=localhost;Port=5432;Database=leads;Username=postgres;Password=Matrix29#;SearchPath=leads;";
+
+        services.AddDbContext<LeadsDbContext>(options =>
+        {
+            options.UseNpgsql(connectionString, npgsqlOptions =>
+            {
+                npgsqlOptions.MigrationsHistoryTable("__EFMigrationsHistory", "leads");
+            });
+        });
+
+        services.AddDbContext<LeadsDbContext>(o => o.UseNpgsql(connectionString));
+        services.AddScoped<ILeadRepository, LeadRepository>();
+        services.AddScoped<IAdvisorRepository, AdvisorRepository>();
+        services.AddScoped<IMotorcycleRepository, MotorcycleRepository>();
+        services.AddScoped<IPipelineRunRepository, PipelineRunRepository>();
+        var pipelineUrl = configuration["Pipeline:BaseUrl"] ?? "http://localhost:8001";
+        services.AddHttpClient<IPipelineService, PipelineHttpClient>(client => { client.BaseAddress = new Uri(pipelineUrl); client.Timeout = TimeSpan.FromSeconds(30); });
+
+
+
+        return services;
+    }
+}

@@ -1,3 +1,5 @@
+using NUnit.Framework;
+
 namespace Leads.UnitTests
 {
     public class Tests
