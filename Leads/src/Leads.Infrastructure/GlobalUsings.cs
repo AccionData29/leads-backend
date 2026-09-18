@@ -1,0 +1,10 @@
+global using Leads.Application.DTOs;
+global using Leads.Application.Ports;
+global using Leads.Domain.Entities;
+global using Leads.Domain.Enums;
+global using Leads.Infrastructure.Persistence;
+global using Leads.Infrastructure.Repositories;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.EntityFrameworkCore.Design;
+global using Microsoft.Extensions.Configuration;
+global using Microsoft.Extensions.DependencyInjection;

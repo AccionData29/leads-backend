@@ -1,4 +1,3 @@
-using Leads.Domain.Enums;
 namespace Leads.Application.DTOs;
 
 public sealed record LeadListItem(long LeadId, DateTime FechaRegistro, string Canal, long EmpresaId, long PuntoVentaId, string NombreCliente, string? Ciudad, string? ModeloInteresTexto, LeadStatus EstadoGestion, LeadPriority? Prioridad, decimal? Score, long? AsesorId);

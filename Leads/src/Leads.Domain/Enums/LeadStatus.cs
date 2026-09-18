@@ -1,2 +1,6 @@
 namespace Leads.Domain.Enums;
-public enum LeadStatus { New, Contacted, Qualified, Appointment, Won, Lost }
+
+public enum LeadStatus
+{
+    New, Contacted, Qualified, Appointment, Won, Lost
+}

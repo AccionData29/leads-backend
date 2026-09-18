@@ -1,18 +1,13 @@
-using NUnit.Framework;
+using FluentAssertions;
+using Xunit;
 
-namespace Leads.UnitTests
+namespace Leads.UnitTests;
+
+public class LegacyCompatibilityTests
 {
-    public class Tests
+    [Fact]
+    public void PlaceholderTestShouldBeConsistentWithXunit()
     {
-        [SetUp]
-        public void Setup()
-        {
-        }
-
-        [Test]
-        public void Test1()
-        {
-            Assert.Pass();
-        }
+        true.Should().BeTrue();
     }
 }

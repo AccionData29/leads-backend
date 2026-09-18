@@ -1,10 +1,3 @@
-using Leads.Application.Ports;
-using Leads.Infrastructure.Persistence;
-using Leads.Infrastructure.Repositories;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-
 namespace Leads.Infrastructure;
 
 public static class DependencyInjection
@@ -28,10 +21,13 @@ public static class DependencyInjection
         services.AddScoped<IAdvisorRepository, AdvisorRepository>();
         services.AddScoped<IMotorcycleRepository, MotorcycleRepository>();
         services.AddScoped<IPipelineRunRepository, PipelineRunRepository>();
+
         var pipelineUrl = configuration["Pipeline:BaseUrl"] ?? "http://localhost:8001";
-        services.AddHttpClient<IPipelineService, PipelineHttpClient>(client => { client.BaseAddress = new Uri(pipelineUrl); client.Timeout = TimeSpan.FromSeconds(30); });
-
-
+        services.AddHttpClient<IPipelineService, PipelineHttpClient>(client =>
+        {
+            client.BaseAddress = new Uri(pipelineUrl);
+            client.Timeout = TimeSpan.FromSeconds(30);
+        });
 
         return services;
     }
