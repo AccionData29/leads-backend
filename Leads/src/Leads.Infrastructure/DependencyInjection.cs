@@ -6,7 +6,7 @@ public static class DependencyInjection
     {
         var connectionString = configuration.GetConnectionString("Default")
             ?? configuration["DATABASE_URL"]
-            ?? "Host=localhost;Port=5432;Database=leads;Username=postgres;Password=Matrix29#;SearchPath=leads;";
+            ?? "Host=localhost;Port=5432;Database=leads;Username=postgres;Password=CHANGE_ME_LOCALLY;SearchPath=leads;";
 
         services.AddDbContext<LeadsDbContext>(options =>
         {
@@ -16,7 +16,6 @@ public static class DependencyInjection
             });
         });
 
-        services.AddDbContext<LeadsDbContext>(o => o.UseNpgsql(connectionString));
         services.AddScoped<ILeadRepository, LeadRepository>();
         services.AddScoped<IAdvisorRepository, AdvisorRepository>();
         services.AddScoped<IMotorcycleRepository, MotorcycleRepository>();

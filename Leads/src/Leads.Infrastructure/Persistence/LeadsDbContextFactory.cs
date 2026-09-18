@@ -7,7 +7,7 @@ public sealed class LeadsDbContextFactory : IDesignTimeDbContextFactory<LeadsDbC
         var optionsBuilder = new DbContextOptionsBuilder<LeadsDbContext>();
         optionsBuilder.UseNpgsql(
             Environment.GetEnvironmentVariable("DATABASE_URL")
-            ?? "Host=localhost;Port=5432;Database=leads;Username=postgres;Password=Matrix29#;SearchPath=leads;");
+            ?? "Host=localhost;Port=5432;Database=leads;Username=postgres;Password=CHANGE_ME_LOCALLY;SearchPath=leads;");
 
         return new LeadsDbContext(optionsBuilder.Options);
     }
