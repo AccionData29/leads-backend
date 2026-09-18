@@ -1,6 +1,6 @@
 namespace Leads.Application.DTOs;
 
-public sealed record LeadListItem(long LeadId, DateTime FechaRegistro, string Canal, long EmpresaId, long PuntoVentaId, string NombreCliente, string? Ciudad, string? ModeloInteresTexto, LeadStatus EstadoGestion, LeadPriority? Prioridad, decimal? Score, long? AsesorId);
+public sealed record LeadListItem(long LeadId, DateTime FechaRegistro, string Canal, string? CanalNormalizado, long EmpresaId, long PuntoVentaId, string NombreCliente, string? Ciudad, string? ModeloInteresTexto, LeadStatus EstadoGestion, LeadPriority? Prioridad, decimal? Score, long? AsesorId);
 public sealed record LeadDetail(long LeadId, DateTime FechaRegistro, string Canal, long EmpresaId, long PuntoVentaId, string NombreCliente, string? Telefono, string? Email, string? Ciudad, string? ModeloInteresTexto, LeadStatus EstadoGestion, DateTime? FechaPrimerContacto, string? Campania, string? MotorcycleSku, decimal? ModelMatchConfidence, string? ModelMatchMethod, CustomerSummary? Customer, EnrichmentDto? LatestEnrichment, ScoreDto? LatestScore, AssignmentDto? LatestAssignment);
 public sealed record CustomerSummary(Guid CustomerId, string Nombre, string? TelefonoNormalizado, string? EmailNormalizado, string? Ciudad);
 public sealed record EnrichmentDto(long LeadId, string? ModeloInteres, decimal? CuotaInicial, string? FormaPago, string? Intencion, string? Objecion, bool SolicitoCita, bool SolicitoCotizacion, decimal Confianza, string Provider, string PipelineVersion, DateTime CreatedAt);

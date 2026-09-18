@@ -57,6 +57,7 @@ public sealed class LeadRepository(LeadsDbContext db) : ILeadRepository
                 lead.LeadId,
                 lead.FechaRegistro,
                 lead.Canal,
+                lead.CanalNormalizado,
                 lead.EmpresaId,
                 lead.PuntoVentaId,
                 lead.NombreCliente,

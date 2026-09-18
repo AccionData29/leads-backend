@@ -113,7 +113,7 @@ public class UseCaseTests
     {
         var expectedList = new List<LeadListItem>
         {
-            new(1, DateTime.UtcNow, "web", 4, 5, "Ana", "Bogotá", "XR 190", LeadStatus.Qualified, LeadPriority.High, 90m, 9)
+            new(1, DateTime.UtcNow, "web", "web", 4, 5, "Ana", "Bogotá", "XR 190", LeadStatus.Qualified, LeadPriority.High, 90m, 9)
         };
         var expectedDetail = new LeadDetail(1, DateTime.UtcNow, "web", 4, 5, "Ana", "57300", "ana@mail.com", "Bogotá", "XR 190", LeadStatus.Qualified, DateTime.UtcNow.AddDays(-1), "campania", "SKU-1", 0.92m, "ml", null, null, null, null);
         var expectedScore = new ScoreDto(1, 0.5m, 88m, LeadPriority.Medium, "[]", "m-2026", DateTime.UtcNow);
